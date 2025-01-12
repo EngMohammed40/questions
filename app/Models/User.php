@@ -59,6 +59,9 @@ class User extends Authenticatable
 
     public function activeExam()
     {
+        if(!auth()->user()->gender){
+            return null;
+        }
         return $this->exams()->where(auth()->user()->gender . '_finished', false)->first();
     }
 }

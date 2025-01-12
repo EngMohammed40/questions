@@ -11,15 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class InitExamAction
 {
-    public Exam $exam;
+    public ?Exam $exam;
     public User $user;
     public ?Exam $activeExam;
 
     public function __construct(){
         $this->user = Auth::user();
-        if(!$this->hasGender()){
-            return;
-        }
         $this->activeExam = $this->user->activeExam();
         $this->exam = $this->getExam();
     }
@@ -54,11 +51,11 @@ class InitExamAction
     }
 
 
-    public function hasGender(): bool{
+    public function doesntHaveGender(): bool{
         if(!request('token') && !auth()->user()->gender){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 
@@ -101,7 +98,10 @@ class InitExamAction
         ]);
     }
 
-    private function getExam(): Exam{
+    private function getExam(): ?Exam{
+        if(!$this->user->gender){
+            return null;
+        }
         if(request()->token){
             return Exam::where('token', request()->token)->firstOrFail();
         }

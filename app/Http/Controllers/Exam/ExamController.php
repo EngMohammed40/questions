@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class ExamController extends Controller
 {
     public function index(InitExamAction $action){
-        if(!$action->hasGender()) {
-            return redirect()->route('dashboard');
+        if(!request('token') && !auth()->user()->gender){
+            return to_route('dashboard');
         }
         if($action->canShowExam())
         {
