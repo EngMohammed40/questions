@@ -61,6 +61,9 @@ class InitExamAction
 
     public function canShowExam(): bool
     {
+        if(!$this->exam){
+            return false;
+        }
         return ($this->user->id == $this->exam->male_user_id && $this->exam->male_finished) || ($this->user->id == $this->exam->female_user_id && $this->exam->female_finished);
     }
 
