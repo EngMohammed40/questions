@@ -71,7 +71,7 @@ class InitExamAction
     private function abortInvalidUser(): void
     {
         if(
-            $this->exam->male_user_id && $this->exam->female_user_id && !in_array($this->user->id, [$this->exam->male_user_id, $this->exam->female_user_id])
+            $this->exam && $this->exam->male_user_id && $this->exam->female_user_id && !in_array($this->user->id, [$this->exam->male_user_id, $this->exam->female_user_id])
         )
         {
             abort(403);
@@ -102,7 +102,7 @@ class InitExamAction
     }
 
     private function getExam(): ?Exam{
-        if(!$this->user->gender){
+        if(!$this->user->gender && !request()->token){
             return null;
         }
         if(request()->token){
