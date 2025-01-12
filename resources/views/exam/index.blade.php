@@ -53,6 +53,9 @@
                 $.ajax({
                     url: "{{ route('exam.save-answer') }}",
                     type: "POST",
+                    beforeSend: function(){
+                        $('.action__btn').attr('disabled',true)
+                    },
                     data: {
                         question_id: id,
                         answer: answer,
