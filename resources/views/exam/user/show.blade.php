@@ -39,7 +39,7 @@
                                     @if ($score == 0)
                                         <span class="text-red-500">لم تحسب بعد</span>
                                     @else
-                                        {{ $importantScore['score'] }} من أصل {{ $importantScore['total'] }} متوافقة
+                                        {{ $importantScore['score'] }} من أصل {{ $importantScore['total'] }} غير متوافقة
                                     @endif
                                 </td>
                             </tr>

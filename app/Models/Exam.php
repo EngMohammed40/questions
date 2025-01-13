@@ -50,7 +50,7 @@ class Exam extends Model
         }
         foreach($genderAnswers as $key => $genderAnswer){
             $answerSequence = $genderAnswer->{$gender . '_answer'} . $otherGenderAnsers[$key]->{$otherGender . '_answer'};
-            if(!in_array($answerSequence,$genderAnswer->question->wrong_answers)){
+            if(in_array($answerSequence,$genderAnswer->question->wrong_answers)){
                 $score++;
             }
         }
