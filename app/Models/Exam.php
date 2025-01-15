@@ -28,49 +28,79 @@ class Exam extends Model
         return round($score / $maleAnswers->count() * 100);
     }
 
-    public function importantScore(){
+    // public function importantScore(){
 
-        if(!$this->male_finished || !$this->female_finished){
+    //     if(!$this->male_finished || !$this->female_finished){
+    //         return [
+    //             'total' => 0,
+    //             'score' => 0
+    //         ];
+    //     }
+
+    //     $maleImportantAnswers = UserAnswer::where('exam_id', $this->id)
+    //                     ->whereNotNull('male_answer')
+    //                     ->where('important', true)
+    //                     ->get();
+    //     $maleAllAnswers = UserAnswer::where('exam_id', $this->id)
+    //     ->whereNotNull('male_answer')
+    //     ->get();
+
+    //     $femaleImportantAnswers = UserAnswer::where('exam_id', $this->id)
+    //                                 ->whereNotNull('female_answer')
+    //                                 ->where('important', true)
+    //                                 ->get();
+
+    //     $femaleAllAnswers = UserAnswer::where('exam_id', $this->id)
+    //     ->whereNotNull('female_answer')
+    //     ->get();
+
+    //     $score = 0;
+    //     foreach($maleImportantAnswers as $maleAnswer){
+    //         $answerSequence = $maleAnswer->male_answer . $femaleAllAnswers->where('question_id', $maleAnswer->question_id)->first()->female_answer;
+    //         if(in_array($answerSequence,$maleAnswer->question->wrong_answers)){
+    //             $score++;
+    //         }
+    //     }
+
+    //     foreach($femaleImportantAnswers as $femaleAnswer){
+    //         $answerSequence = $maleAllAnswers->where('question_id', $femaleAnswer->question_id)->first()->male_answer . $femaleAnswer->female_answer;
+    //         if(in_array($answerSequence,$femaleAnswer->question->wrong_answers)){
+    //             $score++;
+    //         }
+    //     }
+
+    //     return [
+    //         'total' => $maleImportantAnswers->count() + $femaleImportantAnswers->count(),
+    //         'score' => $score
+    //     ];
+    // }
+
+    public function importantScore($gender = null){
+        $gender = $gender ?? auth()->user()->gender;
+        $otherGender = $gender == 'male' ? 'female' : 'male';
+        $genderAnswers = UserAnswer::where('exam_id', $this->id)
+                            ->whereNotNull($gender . '_answer')
+                            ->where('important', true)
+                            ->get();
+
+        $otherGenderAnsers = UserAnswer::where('exam_id', $this->id)
+                                        ->whereNotNull($otherGender . '_answer')
+                                        ->get();
+        $score = 0;
+        if($genderAnswers->count() == 0 ||  $otherGenderAnsers->count() == 0){
             return [
                 'total' => 0,
                 'score' => 0
             ];
         }
-
-        $maleImportantAnswers = UserAnswer::where('exam_id', $this->id)
-                        ->whereNotNull('male_answer')
-                        ->where('important', true)
-                        ->get();
-        $maleAllAnswers = UserAnswer::where('exam_id', $this->id)
-        ->whereNotNull('male_answer')
-        ->get();
-
-        $femaleImportantAnswers = UserAnswer::where('exam_id', $this->id)
-                                    ->whereNotNull('female_answer')
-                                    ->where('important', true)
-                                    ->get();
-
-        $femaleAllAnswers = UserAnswer::where('exam_id', $this->id)
-        ->whereNotNull('female_answer')
-        ->get();
-
-        $score = 0;
-        foreach($maleImportantAnswers as $maleAnswer){
-            $answerSequence = $maleAnswer->male_answer . $femaleAllAnswers->where('question_id', $maleAnswer->question_id)->first()->female_answer;
-            if(in_array($answerSequence,$maleAnswer->question->wrong_answers)){
+        foreach($genderAnswers as $key => $genderAnswer){
+            $answerSequence = $genderAnswer->{$gender . '_answer'} . $otherGenderAnsers[$key]->{$otherGender . '_answer'};
+            if(in_array($answerSequence,$genderAnswer->question->wrong_answers)){
                 $score++;
             }
         }
-
-        foreach($femaleImportantAnswers as $femaleAnswer){
-            $answerSequence = $maleAllAnswers->where('question_id', $femaleAnswer->question_id)->first()->male_answer . $femaleAnswer->female_answer;
-            if(in_array($answerSequence,$femaleAnswer->question->wrong_answers)){
-                $score++;
-            }
-        }
-
         return [
-            'total' => $maleImportantAnswers->count() + $femaleImportantAnswers->count(),
+            'total' => $genderAnswers->count(),
             'score' => $score
         ];
     }

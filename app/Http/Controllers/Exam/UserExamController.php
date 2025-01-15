@@ -19,11 +19,13 @@ class UserExamController extends Controller
     {
         $exam = $this->getExams()->findOrFail($id);
         $score = $exam->calculateScore();
-        $importantScore = $exam->importantScore();
+        $maleImportantScore = $exam->importantScore('male');
+        $femaleImportantScore = $exam->importantScore('female');
         return view('exam.user.show', [
             'exam' => $exam,
             'score' => $score,
-            'importantScore' => $importantScore
+            'maleImportantScore' => $maleImportantScore,
+            'femaleImportantScore' => $femaleImportantScore
         ]);
     }
 

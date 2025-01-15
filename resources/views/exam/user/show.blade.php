@@ -34,12 +34,22 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2 border">الأسئلة المتوافقة</td>
+                                <td class="px-4 py-2 border">الأسئلة المتوافقة للخاطب</td>
                                 <td class="px-4 py-2 border"> 
                                     @if ($score == 0)
                                         <span class="text-red-500">لم تحسب بعد</span>
                                     @else
-                                        {{ $importantScore['score'] }} من أصل {{ $importantScore['total'] }} غير متوافقة
+                                        {{ $maleImportantScore['score'] }} من أصل {{ $maleImportantScore['total'] }} غير متوافقة
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border">الأسئلة المتوافقة للخاطبة</td>
+                                <td class="px-4 py-2 border"> 
+                                    @if ($score == 0)
+                                        <span class="text-red-500">لم تحسب بعد</span>
+                                    @else
+                                        {{ $femaleImportantScore['score'] }} من أصل {{ $femaleImportantScore['total'] }} غير متوافقة
                                     @endif
                                 </td>
                             </tr>
