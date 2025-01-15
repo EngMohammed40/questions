@@ -34,7 +34,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2 border">الأسئلة المتوافقة للخاطب</td>
+                                <td class="px-4 py-2 border">الأسئلة الحاسمة للخاطب</td>
                                 <td class="px-4 py-2 border"> 
                                     @if ($score == 0)
                                         <span class="text-red-500">لم تحسب بعد</span>
@@ -44,7 +44,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2 border">الأسئلة المتوافقة للخاطبة</td>
+                                <td class="px-4 py-2 border">الأسئلة الحاسمة للخاطبة</td>
                                 <td class="px-4 py-2 border"> 
                                     @if ($score == 0)
                                         <span class="text-red-500">لم تحسب بعد</span>
