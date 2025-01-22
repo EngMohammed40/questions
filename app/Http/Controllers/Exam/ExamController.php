@@ -22,6 +22,12 @@ class ExamController extends Controller
         }
 
         $data = $action->handle();
+
+        if(!auth()->user()->age){
+            return redirect()->route('dashboard',[
+                'token' => $data['exam']->token
+            ]);
+        }
       
         return view('exam.index',[
             'question' => $data['questions']->first(),

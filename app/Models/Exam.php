@@ -82,10 +82,11 @@ class Exam extends Model
                             ->whereNotNull($gender . '_answer')
                             ->where('important', true)
                             ->get();
-
+       
         $otherGenderAnsers = UserAnswer::where('exam_id', $this->id)
                                         ->whereNotNull($otherGender . '_answer')
                                         ->get();
+
         $score = 0;
         if($genderAnswers->count() == 0 ||  $otherGenderAnsers->count() == 0){
             return [
@@ -93,8 +94,8 @@ class Exam extends Model
                 'score' => 0
             ];
         }
-        foreach($genderAnswers as $key => $genderAnswer){
-            $answerSequence = $genderAnswer->{$gender . '_answer'} . $otherGenderAnsers[$key]->{$otherGender . '_answer'};
+        foreach($genderAnswers as $genderAnswer){
+            $answerSequence = $genderAnswer->{$gender . '_answer'} . $otherGenderAnsers->where('question_id', $genderAnswer->question_id)->first()->{$otherGender . '_answer'};
             if(in_array($answerSequence,$genderAnswer->question->wrong_answers)){
                 $score++;
             }
@@ -108,5 +109,13 @@ class Exam extends Model
     public function answers(): HasMany
     {
         return $this->hasMany(UserAnswer::class);
+    }
+
+
+    public function male(){
+        return $this->belongsTo(User::class, 'male_user_id');
+    }
+    public function female(){
+        return $this->belongsTo(User::class, 'female_user_id');
     }
 }

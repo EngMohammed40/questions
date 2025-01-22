@@ -53,6 +53,30 @@
                                     @endif
                                 </td>
                             </tr>
+                            <tr>
+                                <td class="px-4 py-2 border">العمر</td>
+                                <td class="px-4 py-2 border">
+                                    ( {{ $exam->male?->age }} - {{ $exam->female?->age }} )
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border">الوزن</td>
+                                <td class="px-4 py-2 border">
+                                    ( {{ $exam->male?->weight }} - {{ $exam->female?->weight }} )
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border">الطول</td>
+                                <td class="px-4 py-2 border">
+                                    ( {{ $exam->male?->height }} - {{ $exam->female?->height }} )
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2 border">لون البشرة</td>
+                                <td class="px-4 py-2 border">
+                                    ( {{ $exam->male?->skin_color }} - {{ $exam->female?->skin_color }} )
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 

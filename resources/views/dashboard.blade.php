@@ -7,17 +7,46 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 md:w-1/3">
-                    @if (!auth()->user()->gender)
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (!auth()->user()->age)
                         <form method="POST" action="{{ route('gender.update') }}" class="space-y-6">
                             @csrf
-                            <div>
-                                <x-input-label for="gender" value="النوع" />
-                                <select id="gender" name="gender" class="block mt-1 w-full">
-                                    <option value="male">ذكر</option>
-                                    <option value="female">أنثى</option>
-                                </select>
-                                <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+                            <input type="hidden" name="token" value="{{ request('token') }}">
+                            <div class="w-100 grid grid-cols-4 gap-2">
+                                @if (!auth()->user()->gender)
+                                    <div>
+                                        <x-input-label for="gender" value="النوع" />
+                                        <select id="gender" required name="gender" class="block mt-1 w-full">
+                                            <option value="male">ذكر</option>
+                                            <option value="female">أنثى</option>
+                                        </select>
+                                        <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+                                    </div>
+                                @endif
+                                <div>
+                                    <x-input-label for="age" value="العمر" />
+                                    <input id="age" required name="age" type="text" class="mt-1 block w-full" placeholder="25" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('age')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="weight" value="الوزن" />
+                                    <input id="weight" required name="weight" type="text" class="mt-1 block w-full" placeholder="25" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('weight')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="height" value="الطول" />
+                                    <input id="height" required name="height" type="text" class="mt-1 block w-full" placeholder="25" />
+                                    <x-input-error class="mt-2" :messages="$errors->get('height')" />
+                                </div>
+                                <div>
+                                    <x-input-label for="skin_color" value="لون البشره" />
+                                    <select id="skin_color" required name="skin_color" class="block mt-1 w-full">
+                                        <option value="بيضاء">بيضاء</option>
+                                        <option value="حنطية">حنطية</option>
+                                        <option value="سمراء">سمراء</option>
+                                    </select>
+                                    <x-input-error class="mt-2" :messages="$errors->get('skin_color')" />
+                                </div>
                             </div>
                             <div class="flex items-center justify-start mt-4">
                                 <x-primary-button>
