@@ -23,7 +23,7 @@ class ExamController extends Controller
 
         $data = $action->handle();
 
-        if(!auth()->user()->age){
+        if(!auth()->user()->age || !auth()->user()->gender){
             return redirect()->route('dashboard',[
                 'token' => $data['exam']->token
             ]);

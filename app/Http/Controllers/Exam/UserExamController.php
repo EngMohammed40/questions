@@ -11,6 +11,9 @@ class UserExamController extends Controller
 {
     public function index()
     {
+        if(!auth()->user()->age || !auth()->user()->gender){
+            return redirect()->route('dashboard');
+        }
         $exams = $this->getExams()->get();
         return view('exam.user.index', compact('exams'));
     }
