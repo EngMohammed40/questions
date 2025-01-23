@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Exam\ExamController;
 use App\Http\Controllers\Exam\UserExamController;
 use App\Http\Controllers\Gender\GenderController;
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
@@ -17,6 +18,9 @@ Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
 
+
+
+Route::get('/',[HomeController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {
