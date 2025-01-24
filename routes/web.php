@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Dashbaord\DashboardController;
 use App\Http\Controllers\Admin\Question\QuestionController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Exam\ExamController;
 use App\Http\Controllers\Exam\UserExamController;
@@ -50,8 +51,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(AuthAdmin::class)->group(function(){
         Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
         Route::resource('questions', QuestionController::class);
+        Route::resource('users', UserController::class);
     });
  
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+
