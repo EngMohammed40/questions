@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Dashbaord\DashboardController;
 use App\Http\Controllers\Admin\Question\QuestionController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\Contact\ContactController;
 use App\Http\Controllers\Exam\ExamController;
 use App\Http\Controllers\Exam\UserExamController;
 use App\Http\Controllers\Gender\GenderController;
@@ -14,14 +15,14 @@ use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/',[HomeController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
 Route::controller(GoogleController::class)->group(function(){
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
-
-
-
-Route::get('/',[HomeController::class, 'index']);
 
 
 Route::middleware('auth')->group(function () {
@@ -47,13 +48,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('login',[LoginController::class, 'showLoginForm'])->name('login-form');
     Route::post('login',[LoginController::class, 'login'])->name('login');
     Route::post('logout',[LoginController::class, 'logout'])->name('logout');
-
     Route::middleware(AuthAdmin::class)->group(function(){
         Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
         Route::resource('questions', QuestionController::class);
         Route::resource('users', UserController::class);
     });
- 
+
 });
 
 require __DIR__.'/auth.php';

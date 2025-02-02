@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            لوحة التحكم
+            مقياس التوافق الزواجي
         </h2>
     </x-slot>
     <div class="py-12">
@@ -54,8 +54,20 @@
                                 </x-primary-button>
                             </div>
                         </form>
-                    @else 
-                        <a href="{{ route('exam.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                    @else
+                    <h2 class="flex justify-start flex-col items-start ">
+                      <span class="flex flex-col">
+                        <span class="font-bold mb-2"> ⏺قسم الاستخدام:</span>
+                        حتى أكون صادقاً أمام الله وأمام الطرف الآخر، أقسم بالله العظيم أن أجيب بصدق  تام على كل عبارات المقياس،
+                        <br>
+                         كما أقسم ألا أنسخ أو أصور أو استخدام المقياس في أي موضع آخر دون أذن صاحبه.
+                      </span>
+                        <label for="swearCheckbox" class="inline-flex items-center mt-3  mb-4">
+                            <input id="swearCheckbox" type="checkbox" class="form-checkbox h-5 w-5 ml-2 text-blue-600">
+                            <span class="ml-2  font-bold py-4 text-gray-700 dark:text-gray-300">أُقسم</span>
+                        </label>
+                    </h2>
+                        <a id="startTestButton" href="{{ route('exam.index') }}" class="inline-flex items-center px-4 py-2 bg-purple-900 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                             ابدأ اختبار الان
                         </a>
                     @endif
@@ -63,4 +75,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('startTestButton').addEventListener('click', function(event) {
+            const swearCheckbox = document.getElementById('swearCheckbox');
+            if (!swearCheckbox.checked) {
+                event.preventDefault(); // منع الانتقال إلى صفحة الاختبار
+                alert('يجب عليك الضغط على "أقسم" قبل بدء الاختبار.'); // إظهار رسالة تنبيه
+            }
+        });
+    </script>
 </x-app-layout>

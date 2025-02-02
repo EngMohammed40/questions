@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
-    
+
     public function index()
     {
         $questions = Question::paginate(10);
@@ -70,14 +70,14 @@ class QuestionController extends Controller
         $question->delete();
         return redirect()->route('admin.questions.index');
     }
-    
+
 
     private function getAnswers(): array{
         return [
-            'نعم / نعم' => '11',
-            'نعم / لا' => '01',
-            'لا / نعم' => '10',
-            'لا / لا' => '00',
+            'أوافق / أوافق' => '11',
+            'أوافق / لا أوافق' => '01',
+            'لا أوافق / أوافق' => '10',
+            'لا أوافق / لا أوافق' => '00',
         ];
     }
 }
