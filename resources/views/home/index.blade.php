@@ -34,10 +34,10 @@
     </style>
 </head>
 <body class=" ">
-    <header class="bg-pink-100 text-white py-2 px-24">
+    <header class="bg-pink-100 text-white py-2 px-6 lg:px-24">
         <div class="container mx-auto flex justify-between items-center px-4">
             <!-- زر تواصل معنا على اليسار -->
-            <img src="/assets/images/logo.png" class="lg:w-40 lg:h-44 w-20 h-12 lg:-mr-12" alt="logo">
+            <img src="/assets/images/logo.png" class="lg:w-40 lg:h-44 w-24 h-28 lg:-mr-12" alt="logo">
             <!-- القائمة في المنتصف -->
             <nav class="hidden lg:flex">
                 <ul class="flex text-base ">
@@ -50,18 +50,15 @@
 
                 </ul>
             </nav>
-
             <!-- اللوجو على اليمين -->
             <a href={{ route('contact') }} class="hidden lg:block bg-yellow-600 text-white text-base px-8 py-3 rounded-3xl ">تواصل معنا</a>
-
  <!-- Hamburger Icon for Mobile -->
 <button id="menu-toggle" class="lg:hidden focus:outline-none">
-    <svg class="w-6 h-6 text-green-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
     </svg>
 </button>
         </div>
-
         <!-- Mobile Menu (Hidden by Default) -->
         <div id="mobile-menu" class="lg:hidden hidden mt-8 px-8 mb-8">
             <ul class="flex flex-col text-lg ">
@@ -76,7 +73,7 @@
     </header>
     <main class="container mx-auto ">
         {{-- The section test about action  --}}
-        <div class="flex flex-col bg-pink-100 py-8  px-28 rounded-b-3xl  lg:flex-row justify-center items-center lg:items-start gap-8 lg:gap-48">
+        <div class="flex flex-col bg-pink-100 py-8  px-6 lg:px-28 rounded-b-3xl  lg:flex-row justify-center items-center lg:items-start gap-8 lg:gap-48">
             <!-- النص والزر -->
             <div class="w-full lg:w-3/6 space-y-8 mt-12 text-center lg:text-right">
                 <h1 class="text-4xl sm:text-4xl font-bold text-purple-900">مقياس التوافق الزواجي</h1>
@@ -95,7 +92,7 @@
                 <img src="/assets/images/2.png" class="w-48 sm:w-64 lg:w-96 h-48 sm:h-64 lg:h-96" alt="image">
             </div>
         </div>
-        <div class=" px-28 py-12 space-y-8">
+        <div class="px-6 lg:px-28 py-12 space-y-8">
           <h1 class="text-3xl font-bold text-purple-900">معلومات إضافية عن المقياس</h1>
           <p class="text-sm sm:text-base ">
                 يهدف هذا المقياس إلى تقييم درجة التوافق بين الشريكين قبل الزواج، من خلال استكشاف الجوانب النفسية، الاجتماعية، والسلوكية التي قد تؤثر على استقرار العلاقة الزوجية في المستقبل. يتضمن المقياس مجموعة من العبارات التي تتناول القضايا المتعلقة بالتواصل، حل المشكلات، القيم المشتركة، التوقعات الزوجية، والتعامل مع الضغوط الأسرية والاجتماعية.
@@ -110,8 +107,8 @@
                 </span>
             </div>
         </div>
-        <div class="flex items-center justify-center mb-8 ">
-            <div class="bg-red-200 rounded-3xl p-8 text-lg w-1/2 mx-auto border-2 border-gray-400">
+        <div class="flex items-center justify-center mb-8 px-6 ">
+            <div class="bg-red-200 rounded-3xl p-8 text-lg lg:w-1/2 mx-auto border-2 border-gray-400">
               <span class="text-red-600 font-bold text-xl ">تنويه:</span>
               <br>
               <p class="text-gray-600">
@@ -121,14 +118,13 @@
           </div>
     </main>
 
-    <footer class="bg-pink-100 py-8 px-4 sm:px-8 lg:px-24">
+    <footer class="bg-pink-100 py-8 px-6 lg:px-24">
         <div class="container mx-auto">
-
             <!-- الصف الثاني: الخدمات ووسائل التواصل الاجتماعي -->
             <div class="flex flex-col lg:flex-row justify-between items-center lg:items-start space-y-8 lg:space-y-0">
-                <div class="flex flex-col items-start text-start mb-8 w-96">
-                    <img src="/assets/images/logo.png" class="lg:w-40 lg:h-44  -mr-12 " alt="logo">
-                    <p class="text-gray-900 mt-4 max-w-2xl">
+                <div class="flex flex-col items-center lg:items-start text-start mb-8 w-96">
+                    <img src="/assets/images/logo.png" class="lg:w-40 lg:h-44 w-40 h-44 lg:-mr-12" alt="logo">
+                    <p class="text-gray-900 mt-4 max-w-2xl px-6">
                         هو منصة إلكترونية متخصصة في تقديم خدمات الزواج الشرعي وفقًا للتعاليم الإسلامية، ويهدف إلى تسهيل عملية البحث عن شريك الحياة المناسب بطريقة آمنة ومحترمة
                     </p>
                 </div>
@@ -157,7 +153,7 @@
                 <div class="text-center lg:text-right">
                 <h3 class="text-lg font-semibold text-gray-900 mb-4">تواصل معنا</h3>
                 <div class="flex space-x-6">
-                    <a href="#" class="text-gray-900 hover:text-gray-700">
+                    <a href="#" class="text-gray-900 hover:text-gray-700 ml-4">
                         <i class="fab fa-facebook text-2xl"></i>
                     </a>
                     <a href="#" class="text-gray-900 hover:text-gray-700">
