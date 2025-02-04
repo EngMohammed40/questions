@@ -1,3 +1,6 @@
+<head>
+    <title>موقع زواج المودة</title>
+</head>
 <x-guest-layout>
         <x-slot name="logo">
             <a href="/">

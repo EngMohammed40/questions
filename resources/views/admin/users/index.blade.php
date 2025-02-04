@@ -1,3 +1,6 @@
+<head>
+    <title>موقع زواج المودة</title>
+</head>
 <x-app-layout>
 
     <x-slot name="header">

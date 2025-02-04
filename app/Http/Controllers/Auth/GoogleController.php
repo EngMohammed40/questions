@@ -44,7 +44,6 @@ class GoogleController extends Controller
 
                 return redirect()->intended('dashboard');
             }
-
         } catch (Exception $e) {
             dd($e->getMessage());
         }
