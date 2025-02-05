@@ -8,7 +8,6 @@
     <link href="
     https://cdn.jsdelivr.net/npm/samim-font@4.0.5/dist/font-face.min.css
     " rel="stylesheet">
-
     <style>
               body {
             font-family: 'Samim', sans-serif;

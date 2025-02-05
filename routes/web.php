@@ -25,8 +25,8 @@ Route::controller(GoogleController::class)->group(function(){
 });
 
 
-Route::middleware('auth')->group(function () {
 
+Route::middleware('auth')->group(function () {
     Route::middleware(AuthUser::class)->group(function(){
 
         Route::get('/dashboard', function () {
